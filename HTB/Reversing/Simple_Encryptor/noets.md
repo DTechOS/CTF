@@ -4,7 +4,7 @@ On our regular checkups of our secret flag storage server we found out that we w
 --------------------
 
 
-** Static Analysis
+** Static Analysis **
 
 The files content has been encrypted so we need to analyze the ransomwares encryption routine and find a way to decrpyt the files.
 $ cat flag.enc 
@@ -12,7 +12,7 @@ Z5�b�>�����u���9�K�!�C#qe�'K
 
 
 
-** Encryption:
+** Encryption: ** 
 The program first creates a file flag.txt, and uses seek() to im guessing, select the offset at which to start encrpyting data.
 
 ```

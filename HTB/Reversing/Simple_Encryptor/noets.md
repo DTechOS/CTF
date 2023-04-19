@@ -13,7 +13,8 @@ Z5�b�>�����u���9�K�!�C#qe�'K
 
 
 **Encryption:** 
-The program first creates a file flag.txt, and uses seek() to im guessing, select the offset at which to start encrpyting data.
+
+The program first creates a file flag.txt, and uses seek() to im guessing, select the offset at which to start encrypting data.
 
 ```
   file_pointer = *(long *)(in_FS_OFFSET + 40);

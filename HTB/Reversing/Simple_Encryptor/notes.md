@@ -14,7 +14,7 @@ Z5�b�>�����u���9�K�!�C#qe�'K
 
 **Encryption:** 
 
-The program first takes a text file flag, and uses seek() to im guessing, select the offset at which to start encrypting data.
+The program first takes a text file, and uses seek() to im guessing, select the offset at which to start encrypting data.
 
 ```
   file_pointer = *(long *)(in_FS_OFFSET + 40);
@@ -69,7 +69,7 @@ It allocates enough memory to read from the file.
   fread(alloc_bytes,bytes_from_file,1,file_to_enc);
   fclose(file_to_enc);
 ```
-It Initializes a random seed:
+It Initializes a random seed for encryption:
 
 ```
 tVar1 = time((time_t *)0x0);
@@ -79,7 +79,7 @@ srand(maybe_RandTime); // seeds the random number generator used by the function
 
 **Reversing the Encryption Algorithm:**
 
-It's not really an encryption routine, it's just a few bitwise operations and a random seed that we need to run in reverse in order to extract the original contents of the file, if this were real ransomware, it would more of an extreme effort to defeat the encryption, which may not even be possible if you can't find some vulnerability in the cryptographic algorithm, it happens, but rarely. Here's one example of researches finding a flaw in the encryption routine to defeat "Hive" ransomware https://thehackernews.com/2022/02/master-key-for-hive-ransomware.html
+It's not really an encryption routine, it's just a few bitwise operations and a random seed that we need to run in reverse in order to extract the original contents of the file, if this were real ransomware, it would more of an effort to defeat the encryption, which may not even be possible if you can't find some vulnerability in the cryptographic algorithm, it happens, but rarely. Here's one example of researches finding a flaw in the encryption routine to defeat "Hive" ransomware https://thehackernews.com/2022/02/master-key-for-hive-ransomware.html
 
 Encryption Routine:
 ```
@@ -129,10 +129,10 @@ shifted bits: 20
 reversed shifted value: 5 
 ```
  
-Coding a solution in C:
+**Coding a solution in C:**
 
 all we need to do is extract the pseudo random seed with fread(&random_seed,1, 4, file_to_dec).
-the random number
+Then finally just run the same bitwise shift arithmetic in reverse and write the contents out into a new file.
 ```
 #include <stdio.h>
 #include <stdlib.h>
@@ -151,15 +151,12 @@ int main(void) {
     FILE *write_new_file;
     
     file_to_dec = fopen("flag.enc", "rb");
-    
     fread(&rand_seed, 1, 4, file_to_dec);
     srand(rand_seed);
     fseek(file_to_dec, 0, 2);
     
     bytes_from_file = ftell(file_to_dec) - 4;
-    
     fseek(file_to_dec, 4, 0);
-    
     alloc_bytes = malloc(bytes_from_file);
     
     fread(alloc_bytes, bytes_from_file, 1, file_to_dec);
@@ -173,8 +170,6 @@ int main(void) {
        places_to_shift = places_to_shift & 7;
        
        alloc_bytes[i] = (alloc_bytes[i] >> places_to_shift) | (alloc_bytes[i] << (8 - places_to_shift)); 
-      
-       
        alloc_bytes[i] = alloc_bytes[i] ^ rand_xor_key;
    }
    
@@ -186,11 +181,8 @@ int main(void) {
    return 0;
 }
 ```
-Compile and run the program, then cat the flag.dec file to get the flag
-```
-```
+Finally compile and run the program, then cat the flag.dec file to get the flag.
 
----------------
 
 
 

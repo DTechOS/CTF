@@ -109,7 +109,7 @@ in this example, the second shift operation just reverses the first, and returns
    int shifted_val;
    int shifted_val2;
    
-   num_to_shift = 2;
+   places_to_shift = 2;
    num = 5;
    
    shifted_val = num << places_to_shift;

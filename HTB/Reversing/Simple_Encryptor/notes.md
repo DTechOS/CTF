@@ -8,6 +8,7 @@ On our regular checkups of our secret flag storage server we found out that we w
 
 The files content has been encrypted so we need to analyze the ransomware's encryption routine and find a way to decrypt the strings.
 $ cat flag.enc 
+
 Z5�b�>�����u���9�K�!�C#qe�'K  
 
 

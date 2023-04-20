@@ -80,7 +80,7 @@ srand(maybe_RandTime); // seeds the random number generator used by the function
 
 **Reversing the Encryption Algorithm:**
 
-It's not really an encryption routine, it's just a few bitwise operations and a random seed that we need to run in reverse in order to extract the original contents of the file, if this were real ransomware, it would more of an effort to defeat the encryption, which may not even be possible if you can't find some vulnerability in the cryptographic algorithm, it happens, but rarely. Here's one example of researches finding a flaw in the encryption routine to defeat "Hive" ransomware https://thehackernews.com/2022/02/master-key-for-hive-ransomware.html
+It's not really an encryption routine, it's just a random seed and a few bitwise operations that we need to run in reverse in order to extract the original contents of the file, if this were real ransomware, it would more of an effort to defeat the encryption, which may not even be possible if you can't find some vulnerability in the cryptographic algorithm, it happens, but rarely. Here's one example of researches finding a flaw in the encryption routine to defeat "Hive" ransomware https://thehackernews.com/2022/02/master-key-for-hive-ransomware.html
 
 Encryption Routine:
 ```

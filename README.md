@@ -1,4 +1,4 @@
 # CTF write-ups
 Write-ups and notes for various CTF's
 
-## The password for the write-up is the flag of the challenge
+## The passwords for the write-ups are the flag of the challenge

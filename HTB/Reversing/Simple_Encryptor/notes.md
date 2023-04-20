@@ -59,3 +59,9 @@ and the third paramter corresponds to the position from where offset is added.
 2 - SEEK_CUR - Current position of the file pointer
 
 3 - SEEK_END - End of file
+
+---------------
+
+
+
+
